@@ -25,7 +25,6 @@ This folder contains everything regarding the building of the random forest mode
 ## App Folder
 
 It contains all the files building the flask application. 
-final_titanic.ipynb - Creates the model and stores it in a pickle
-request.py - Activates a specific service of the application
-mapping.py - Maps given values into numbers so that the model is used.
-app.py
+
+- mapping.py: Maps given values into numbers (based on the mapping that was done during the preprocessing) so that the random forest model can be used accordingly.
+- app.py: Launches the flask application. This is the core of the web app.

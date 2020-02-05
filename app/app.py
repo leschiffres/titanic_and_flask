@@ -2,15 +2,32 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 import mapping as m
 
-
 model = pickle.load(open('model.pkl', 'rb'))
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    dc = {'Name': 'John, Mr. Douglas', 
+    'Pclass':2, 
+    'Sex': 'Male',
+    'Age': '42' ,
+    'SibSp': '1' ,
+    'Parch': '2' ,
+    'Fare': '20.1'}
 
+    return render_template('index.html',
+        prediction_text='NaN',
+        p_name=dc['Name'],
+        p_class=dc['Pclass'],
+        p_sex=dc['Sex'],
+        p_age=dc['Age'],
+        p_sibsp=dc['SibSp'],
+        p_parch=dc['Parch'],
+        p_fare=dc['Fare'])
+
+# Receives json as input and outputs probability of survival
+# This service is activated by an external program (e.g. request.py)
 @app.route('/results',methods=['POST'])
 def results():
     data = request.get_json(force=True)
@@ -34,6 +51,7 @@ def results():
     output = model.predict_proba(row)[0][1]
     return jsonify(output)
 
+#
 @app.route('/predict',methods=['POST'])
 def predict():
     
@@ -84,8 +102,15 @@ def predict():
     row = [[title, age, age_group, sex, pclass, is_alone, family_size, parch, sibsp, fare]]
     output = model.predict_proba(row)[0][1]
 
-    # output =  model.increase(int(request.form['text']) )
-    return render_template('index.html', prediction_text='{}'.format(output))
+    return render_template('index.html', 
+        prediction_text='{}'.format(output),
+        p_name=given_data['Name'],
+        p_class=given_data['Pclass'],
+        p_sex=given_data['Sex'],
+        p_age=given_data['Age'],
+        p_sibsp=given_data['SibSp'],
+        p_parch=given_data['Parch'],
+        p_fare=given_data['Fare'])
 
 if __name__ == "__main__":
     # app.run(debug=True)

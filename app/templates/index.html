@@ -15,57 +15,19 @@
 		<form action="{{ url_for('predict') }}" method="POST">
 		 	<table>
 				<tr><td></td> <th> Attributes </th> <th>	 Values </th> <br> </tr> 
-				<tr><td></td> <td> Name:               </td> <th>	 <input name="passenger_name" value="John, Mr. Douglas"> </th> <br> </tr>
-				<tr><td></td> <td> Class:              </td> <th>	 <input name="passenger_class" value="2">  	            </th> <br> </tr>
-				<tr><td></td> <td> Sex:                </td> <th>	 <input name="passenger_sex" value="Male">              </th> <br> </tr>
-				<tr><td></td> <td> Age:                </td> <th>	 <input name="passenger_age" value="42">                </th> <br> </tr>
-				<tr><td></td> <td> Siblings & Spouses: </td> <th>	 <input name="passenger_sibsp" value="1">               </th> <br> </tr>
-				<tr><td></td> <td> Parents & Children: </td> <th>	 <input name="passenger_parch" value="2">               </th> <br> </tr>
-				<tr><td></td> <td> Fare:               </td> <th>	 <input name="passenger_fare" value="20.1">             </th> <br> </tr>
+				<tr><td></td> <td> Name:               </td> <th>	 <input name="passenger_name" value="{{ p_name }}"> </th> <br> </tr>
+				<tr><td></td> <td> Class:              </td> <th>	 <input name="passenger_class" value="{{ p_class }}">  	            </th> <br> </tr>
+				<tr><td></td> <td> Sex:                </td> <th>	 <input name="passenger_sex" value="{{ p_sex }}">              </th> <br> </tr>
+				<tr><td></td> <td> Age:                </td> <th>	 <input name="passenger_age" value="{{ p_age }}">                </th> <br> </tr>
+				<tr><td></td> <td> Siblings & Spouses: </td> <th>	 <input name="passenger_sibsp" value="{{ p_sibsp }}">               </th> <br> </tr>
+				<tr><td></td> <td> Parents & Children: </td> <th>	 <input name="passenger_parch" value="{{ p_parch }}">               </th> <br> </tr>
+				<tr><td></td> <td> Fare:               </td> <th>	 <input name="passenger_fare" value="{{ p_fare }}">             </th> <br> </tr>
 				<tr><td></td> <td>                     </td> <th>	 <input type="submit">                                  </th> <br> </tr>
 			</table>    
 		</form>
 		<br>
 		Probability of Survival: {{ prediction_text }}
 </div>  
-
-	<!-- Name: <input name="passenger_name" value="John Mr. Douglas"> <br>
-    Class: <input name="passenger_class" value="2">  <br>
-    Sex: <input name="passenger_sex" value="Male"> <br>
-    Age: <input name="passenger_age" value="42"> <br>
-    Siblings & Spouses: <input name="passenger_sibsp" value="1"> <br>
-    Parents & Children: <input name="passenger_parch" value="2"> <br>
-    Fare: <input name="passenger_fare" value="20.1"> <br>
-	 -->
-<!-- <div align = "center">
-	<h3> Titanic Survival Predictor</h3>
-</div>
-
-<div id="container" style="width:100%;">
-
-	<div id="left" style="float:left; width:50%;"> 
-		<img src="images/titanic.jpg" > 
-	</div>                     
-	
-	<div id="right" style="float:right; width:50%;">                    
-		<form action="{{ url_for('predict') }}" method="POST">
-		 	<table>
-
-				<tr><td></td> <th> Attributes </th> <th>	 Values </th> <br> </tr> 
-				<tr><td></td> <td> Name:               </td> <th>	 <input name="passenger_name" value="John Mr. Douglas"> </th> <br> </tr>
-				<tr><td></td> <td> Class:              </td> <th>	 <input name="passenger_class" value="2">  	            </th> <br> </tr>
-				<tr><td></td> <td> Sex:                </td> <th>	 <input name="passenger_sex" value="Male">              </th> <br> </tr>
-				<tr><td></td> <td> Age:                </td> <th>	 <input name="passenger_age" value="42">                </th> <br> </tr>
-				<tr><td></td> <td> Siblings & Spouses: </td> <th>	 <input name="passenger_sibsp" value="1">               </th> <br> </tr>
-				<tr><td></td> <td> Parents & Children: </td> <th>	 <input name="passenger_parch" value="2">               </th> <br> </tr>
-				<tr><td></td> <td> Fare:               </td> <th>	 <input name="passenger_fare" value="20.1">             </th> <br> </tr>
-				<tr><td></td> <td>                     </td> <th>	 <input type="submit">                                  </th> <br> </tr>
-			</table>    
-		</form>
-	</div> 
-</div>  
- -->
-
 
 </body>
 </html>
