@@ -55,6 +55,18 @@ def predict():
 
     fare = float(request.form["passenger_fare" ])
 
+    given_data = {
+        'Name': request.form["passenger_name" ],
+        'Pclass' : int(request.form["passenger_class"]),
+        'Sex': request.form["passenger_sex"], 
+        'Age': float(request.form["passenger_age"]),
+        'SibSp': int(request.form["passenger_sibsp"]), 
+        'Parch': int(request.form["passenger_parch"]), 
+        'Fare': float(request.form["passenger_fare" ])
+    }
+    print("Given Data")
+    print(given_data)
+
     data = {
         "title": title, 
         "age": age, 
@@ -67,7 +79,7 @@ def predict():
         "sibsp": sibsp, 
         "fare":fare
     }
-
+    print("Transformed Data")
     print(data)
     row = [[title, age, age_group, sex, pclass, is_alone, family_size, parch, sibsp, fare]]
     output = model.predict_proba(row)[0][1]

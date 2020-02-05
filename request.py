@@ -20,6 +20,7 @@ dc = {
 print(dc)
 
 url = 'http://localhost:5001/results'
+# url = 'http://0.0.0.0:5001/results'
 
 r = requests.post(url, json=dc)
 
