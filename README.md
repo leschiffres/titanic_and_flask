@@ -2,9 +2,26 @@
 
 This repository contains code to build a random forest model and deploy as a web service in Flask application. We use the so well known _Titanic_ dataset. 
 
-## How to launch the app
+## Launching the app
 
-- 
+- Clone repository to your local machine: `git clone git@github.com:leschiffres/titanic_and_flask.git`
+
+## Using Docker 
+ 
+- Open a terminal.
+- Path into the app folder `cd titanic_and_flask`
+- Build the image: `docker build -t titanic_app .`
+- Start the container: `docker run --rm -p 9001:9000 titanic_app`
+- Open a browser and go to the address `http://localhost:9001/`
+
+## Using existing python
+
+In order for the app to be able to run in the host machine,_pandas_, _numpy_, _flask_, _sklearn_ have to be in the list of installed libraries. Then: 
+
+- Open a terminal.
+- Path into the app folder `cd titanic_and_flask/app/`.
+- Start the flask application by using the command `python3 app.py`.
+- Open a browser and go to the address `http://localhost:9000/`
 
 ## Files Description
 

@@ -1,11 +1,17 @@
 import requests
 import pandas as pd
+import random
 
-df = pd.read_csv('dataset/train.csv')
+# read data
+df = pd.read_csv('./building model/dataset/train.csv')
 
-passenger_id = 89
-# passenger = df.loc[df['PassengerId']==passenger_id, ['Name', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare']]
+# find a passenger whose data are complete
+passenger_id = random.randint(0, df.shape[0]-1)
 passenger = df.iloc[passenger_id - 1]
+
+while pd.isna(passenger['Name']) or pd.isna(passenger['Pclass']) or pd.isna(passenger['Sex']) or pd.isna(passenger['Age']) or pd.isna(passenger['SibSp']) or pd.isna(passenger['Parch']) or pd.isna(passenger['Fare']):
+	passenger_id = random.randint(0, df.shape[0]-1)
+	passenger = df.iloc[passenger_id - 1]
 
 dc = {
 	'Name': str(passenger['Name']), 
@@ -17,6 +23,7 @@ dc = {
 	'Fare': float(passenger['Fare'])
 }
 
+print(f'Passenger ID: {passenger_id}')
 print(dc)
 
 url = 'http://localhost:5001/results'

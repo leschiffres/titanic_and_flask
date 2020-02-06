@@ -1,20 +1,39 @@
 from flask import Flask, request, jsonify, render_template
 import pickle
 import mapping as m
+import pandas as pd
+import random
 
 model = pickle.load(open('model.pkl', 'rb'))
+
+# read data
+df = pd.read_csv('./dataset/train.csv')
+
+
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    dc = {'Name': 'John, Mr. Douglas', 
-    'Pclass':2, 
-    'Sex': 'Male',
-    'Age': '42' ,
-    'SibSp': '1' ,
-    'Parch': '2' ,
-    'Fare': '20.1'}
+
+    # find a passenger whose data are complete
+    passenger_id = random.randint(0, df.shape[0]-1)
+    passenger = df.iloc[passenger_id - 1]
+
+    while pd.isna(passenger['Name']) or pd.isna(passenger['Pclass']) or pd.isna(passenger['Sex']) or pd.isna(passenger['Age']) or pd.isna(passenger['SibSp']) or pd.isna(passenger['Parch']) or pd.isna(passenger['Fare']):
+        passenger_id = random.randint(0, df.shape[0]-1)
+        passenger = df.iloc[passenger_id - 1]
+
+    dc = {
+        'Name': str(passenger['Name']), 
+        'Pclass': int(passenger['Pclass']), 
+        'Sex': str(passenger['Sex']), 
+        'Age': float(passenger['Age']), 
+        'SibSp': int(passenger['SibSp']), 
+        'Parch': int(passenger['Parch']), 
+        'Fare': float(passenger['Fare'])
+    }
+
 
     return render_template('index.html',
         prediction_text='NaN',
@@ -114,4 +133,4 @@ def predict():
 
 if __name__ == "__main__":
     # app.run(debug=True)
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=9000)
